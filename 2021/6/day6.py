@@ -4,7 +4,8 @@ with open("input.dat", "r") as file:
 
 initial = list(map(int,lines[0].split(",")))
 
-'''
+''' Originally used this for part1
+
 array = np.array(initial, dtype=int)
 def oneday(array):
     newcount = 0
