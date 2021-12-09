@@ -44,32 +44,30 @@ def flood_fill(i, j, hMap, marker):
     currentHeight = hMap[i,j]
     # return if not inside
     if currentHeight >= 9:
-        return hMap
+        return
 
     # set node (this is my method of keeping track)
     hMap[i,j] = marker
     
-    
     # flood_fill neighbours
     if i+1 < len(hMap):
-        hMap = flood_fill(i+1, j, hMap, marker)
+        flood_fill(i+1, j, hMap, marker)
     if i-1 >= 0:
-        hMap = flood_fill(i-1, j, hMap, marker)
+        flood_fill(i-1, j, hMap, marker)
     if j+1 < len(hMap[0]):
-        hMap = flood_fill(i, j+1, hMap, marker)
+        flood_fill(i, j+1, hMap, marker)
     if j-1 >= 0:
-        hMap = flood_fill(i, j-1, hMap, marker)
+        flood_fill(i, j-1, hMap, marker)
 
-    return hMap
+    return
 
-
+# if coord not in basin already or not on max(9) then fill basin
 for i in range(len(hMap)):
     for j in range(len(hMap[0])):
+        if hMap[i,j] < 9:
+            flood_fill(i, j, hMap, np.max(hMap) + 1)
 
-        currentHeight = hMap[i,j]
-        if currentHeight < 9:
-            hMap = flood_fill(i, j, hMap, np.max(hMap) + 1)
-
+# get list of basin sizes
 basinSizes = []
 for h in range(10, np.max(hMap)+1):
     basinSizes.append(np.count_nonzero(hMap == h))
