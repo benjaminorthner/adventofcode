@@ -67,12 +67,8 @@ for i in range(len(hMap)):
         if hMap[i,j] < 9:
             flood_fill(i, j, hMap, np.max(hMap) + 1)
 
-# get list of basin sizes
-basinSizes = []
-for h in range(10, np.max(hMap)+1):
-    basinSizes.append(np.count_nonzero(hMap == h))
-
-basinSizes = sorted(basinSizes)
+# get sorted list of basin sizes
+basinSizes = sorted([np.count_nonzero(hMap == h) for h in range(10, np.max(hMap) + 1)])
 print(basinSizes[-1] * basinSizes[-2] * basinSizes[-3])
 
 # plot with random colors
@@ -81,3 +77,4 @@ colorSet[0] = [0, 0, 0]
 cmap = colors.ListedColormap(colorSet)
 plt.imshow(hMap, interpolation='nearest', cmap=cmap)
 plt.show()
+
