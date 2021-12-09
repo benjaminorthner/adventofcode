@@ -58,8 +58,8 @@ def flood_fill(i, j, hMap, marker):
         flood_fill(i, j+1, hMap, marker)
     if j-1 >= 0:
         flood_fill(i, j-1, hMap, marker)
-
     return
+
 
 # if coord not in basin already or not on max(9) then fill basin
 for i in range(len(hMap)):
