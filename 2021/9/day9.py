@@ -3,6 +3,9 @@ import re
 import math
 import numpy as np
 from numpy.core.fromnumeric import sort
+from matplotlib import pyplot as plt
+from matplotlib import colors
+
 
 with open("input.dat", "r") as file:
     lines = [line.strip() for line in file.readlines()]
@@ -73,3 +76,10 @@ for h in range(10, np.max(hMap)+1):
 
 basinSizes = sorted(basinSizes)
 print(basinSizes[-1] * basinSizes[-2] * basinSizes[-3])
+
+# plot with random colors
+colorSet = np.random.rand(len(basinSizes), 3)
+colorSet[0] = [0, 0, 0]
+cmap = colors.ListedColormap(colorSet)
+plt.imshow(hMap, interpolation='nearest', cmap=cmap)
+plt.show()
