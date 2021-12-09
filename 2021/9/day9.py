@@ -41,9 +41,8 @@ print(totalRiskLevel)
 # PART 2
 
 def flood_fill(i, j, hMap, marker):
-    currentHeight = hMap[i,j]
-    # return if not inside
-    if currentHeight >= 9:
+    # return if not inside (recursion stop condition)
+    if hMap[i,j] >= 9:
         return
 
     # set node (this is my method of keeping track)
