@@ -59,5 +59,5 @@ for dir, loc in folds[1:]:
 for line in paper:
     for c in line:
         if c: print('#', end='')
-        else: print('.', end='')
+        else: print(' ', end='')
     print('')
