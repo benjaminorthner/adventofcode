@@ -9,7 +9,7 @@ from matplotlib import pyplot as plt
 
 
 # heuristic function that returns estimate for distance from node a to node b
-def h(rMap, a, b):
+def h(a, b):
     i = abs(b[0] - a[0])
     j = abs(b[1] - a[1])
 
@@ -42,7 +42,7 @@ def A_Star(rMap, start, target, h):
     # For node n, fScore[n] := gScore[n] + h(n). fScore[n] represents our current best guess as to
     # how short a path from start to finish can be if it goes through n.
     fScore = defaultdict(lambda: np.inf)
-    fScore[start] = h(rMap, start, target)
+    fScore[start] = h(start, target)
 
     while Q:
         # get node with lowest fScore[n] and removes it from Q
@@ -67,7 +67,7 @@ def A_Star(rMap, start, target, h):
                 # This path to v is better than any previous one. Record it!
                 prev[v] = u
                 gScore[v] = tentative_gScore
-                fScore[v] = tentative_gScore + h(rMap, v, target)
+                fScore[v] = tentative_gScore + h(v, target)
                 if v not in Q:
                     heapq.heappush(Q,v)
     
