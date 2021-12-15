@@ -26,7 +26,7 @@ def A_Star(rMap, start, target, h):
     Q = [start]
     heapq.heapify(Q)
 
-    # For node n, cameFrom[n] is the node immediately preceding it on the cheapest path from start
+    # For node n, prev[n] is the node immediately preceding it on the cheapest path from start
     # to n currently known.
     prev = defaultdict(lambda: None)
 
@@ -74,13 +74,11 @@ def A_Star(rMap, start, target, h):
 with open("input.dat", "r") as file:
     lines = [line.strip() for line in file.readlines()]
 
-
 rMap = np.zeros(shape=(len(lines), len(lines[0])), dtype=int)
 
 for i,line in enumerate(lines):
     for j,c in enumerate(line):
         rMap[i,j] = int(c)
-
 ######################################### PART 1 #########################################
 start = (0,0)
 target = (len(rMap)-1, len(rMap[0])-1)
