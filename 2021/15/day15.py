@@ -1,11 +1,6 @@
-from collections import defaultdict, deque
-import re
-from copy import deepcopy
-import math
+from collections import defaultdict
 import heapq
 import numpy as np
-from numpy.core.fromnumeric import sort
-from matplotlib import pyplot as plt
 
 
 # heuristic function that returns estimate for distance from node a to node b
@@ -114,6 +109,7 @@ print(sum([bigRMap[coord] for coord in path[1:]]))
 
 
 ############################## PLOTTING JUST FOR FUN #####################################
+from matplotlib import pyplot as plt
 
 plt.plot([c[1] for c in path],[c[0] for c in path], color='black')
 plt.gca().invert_yaxis()
