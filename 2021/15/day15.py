@@ -92,7 +92,6 @@ target = (len(rMap)-1, len(rMap[0])-1)
 
 path = A_Star(rMap, start, target, h)
 print(sum([rMap[coord] for coord in path[1:]]))
-
 ######################################### PART 2 #########################################
 # init new bigger map
 bigRMap = rMap
@@ -112,11 +111,13 @@ target = (len(bigRMap)-1, len(bigRMap[0])-1)
 path = A_Star(bigRMap, start, target, h)
 print(sum([bigRMap[coord] for coord in path[1:]]))
 
-##########################################################################################
 
 
+############################## PLOTTING JUST FOR FUN #####################################
 
-
+plt.plot([c[1] for c in path],[c[0] for c in path], color='black')
+plt.gca().invert_yaxis()
+plt.show()
 
 
 
