@@ -115,20 +115,17 @@ def parsePacket(packet):
 
     # greater than operator
     if packet['ID'] == 5:
-        if parsePacket(packet['subPackets'][0]) > parsePacket(packet['subPackets'][1]):
-            return 1
+        if parsePacket(packet['subPackets'][0]) > parsePacket(packet['subPackets'][1]): return 1
         return 0
 
     # less than operator
     if packet['ID'] == 6:
-        if parsePacket(packet['subPackets'][0]) < parsePacket(packet['subPackets'][1]):
-            return 1
+        if parsePacket(packet['subPackets'][0]) < parsePacket(packet['subPackets'][1]): return 1
         return 0
 
     # equal to operator
     if packet['ID'] == 7:
-        if parsePacket(packet['subPackets'][0]) == parsePacket(packet['subPackets'][1]):
-            return 1
+        if parsePacket(packet['subPackets'][0]) == parsePacket(packet['subPackets'][1]): return 1
         return 0
 
 # print out packet structure (just for visualisation)
