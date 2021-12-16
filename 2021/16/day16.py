@@ -141,6 +141,7 @@ def parsePacket(packet):
             return 1
         return 0
 
+# print out packet structure (just for visualisation)
 def printSubPacket(packet, recDepth=0):
     if recDepth == 0:
         print("\n---------------------------------------------------------------------------------------")
