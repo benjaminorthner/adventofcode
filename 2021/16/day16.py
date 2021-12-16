@@ -133,6 +133,7 @@ def parsePacket(packet):
 
 # print out packet structure (just for visualisation)
 def printSubPacket(packet, recDepth=0):
+    printInfo = lambda p: print(f"ID:{p['ID']}, lit:{p['literal']}, sc:{p['numberOfSubPackets']}, sbl:{p['subPacketBitLength']}, version:{p['version']}")
     if recDepth == 0:
         print("\n---------------------------------------------------------------------------------------")
         print("ID:ID, lit: Literal, sc: Sub-packet Count, sbl: Sub-packet bit length, version: version")
@@ -140,12 +141,12 @@ def printSubPacket(packet, recDepth=0):
     if packet['subPackets'] in [None, []]:
         for _ in range(recDepth):
             print('\t', end="")
-        print(f"ID:{packet['ID']}, lit:{packet['literal']}, sc:{packet['numberOfSubPackets']}, sbl:{packet['subPacketBitLength']}, version:{packet['version']}")
+        printInfo(packet)
         return
 
     for _ in range(recDepth):
         print('\t', end='')
-    print(f"ID:{packet['ID']}, lit:{packet['literal']}, sc:{packet['numberOfSubPackets']}, sbl:{packet['subPacketBitLength']}, version:{packet['version']}")
+    printInfo(packet)
     for subPacket in packet['subPackets']:
         printSubPacket(subPacket, recDepth+1)
 
