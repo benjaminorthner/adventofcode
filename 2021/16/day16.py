@@ -1,12 +1,5 @@
-from collections import defaultdict, deque
-import re
-from copy import deepcopy
-import math
+from collections import defaultdict
 import numpy as np
-from numpy.core.fromnumeric import sort
-from matplotlib import pyplot as plt
-from matplotlib import colors
-
 
 with open("input.dat", "r") as file:
     lines = [line.strip() for line in file.readlines()]
@@ -52,10 +45,7 @@ def extract_next_packet(binary):
             if next5bits[0] == '1': continue
             else: break
         
-        # get rid of extra zeros and save encoded number to dict
-        # 6 + len(..) is length of packet and must be a multiple of 4
-        # hence we trim its modulo 4 complement
-        #binary = binary[4 - (6 + len(encodedNumber))%4:]
+        # save encoded number to dict
         packet['literal'] = binToDec(encodedNumber)
 
     # if packet ID != 4
