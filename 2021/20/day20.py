@@ -1,6 +1,7 @@
 import regex
 from copy import deepcopy
 import numpy as np
+from matplotlib import pyplot as plt
 
 with open("input.dat", "r") as file:
     lines = [line.strip() for line in file.readlines()]
@@ -52,3 +53,6 @@ for i in range(50):
     else:
         image = process(image, alg, '0')
         print(i+1, np.count_nonzero(image==1))
+
+plt.imshow(image)
+plt.savefig("output.png", dpi=300)
