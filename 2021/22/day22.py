@@ -98,11 +98,36 @@ def cutCube(cube, distPerpAxis, axisPair):
 
 # slices cube into smaller cubes and leaves a gap that fits the slicerCube
 # returns list of smaller cubes (max 26 cubes)
-def subCube(cube, slicerCube):
-    pass
+def subCube(cubeIn, slicerCube):
+    xslice, yslice, zslice = slicerCube['x'], slicerCube['y'], slicerCube['z']
+    stackA = [cubeIn]
+    stackB = []
+    
     # we make 6 cuts of 'cube'. One cut along each of the 6 faces of the 'slicer'cube
+    for cube in stackA:
+        stackB.append(*cutCube(cube, zslice[0], ['x', 'y']))
+    stackA = []
 
-    #cutCube(cube, distPerpAxis=, axisPair=)
+    for cube in stackB:
+        stackA.append(*cutCube(cube, zslice[1], ['x', 'y']))
+    stackB = []
+
+    for cube in stackA:
+        stackB.append(*cutCube(cube, yslice[0], ['x', 'z']))
+    stackA = []
+
+    for cube in stackB:
+        stackA.append(*cutCube(cube, yslice[1], ['x', 'z']))
+    stackB = []
+
+    for cube in stackA:
+        stackB.append(*cutCube(cube, xslice[0], ['y', 'z']))
+    stackA = []
+
+    for cube in stackB:
+        stackA.append(*cutCube(cube, xslice[1], ['y', 'z']))
+
+
 
 
 cubes = []
