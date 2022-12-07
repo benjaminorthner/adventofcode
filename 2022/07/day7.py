@@ -1,5 +1,3 @@
-from copy import deepcopy
-
 # We will need a tree datastructure
 # so i will first make a node class
 class Node(object):
@@ -38,7 +36,7 @@ for line in lines:
 
         # for initial iteration
         if query != None:
-            commands.append({'query': query, 'response':deepcopy(response)})
+            commands.append({'query': query, 'response':response})
 
         # split query to command and args ('$ cd a' -> ['cd', 'a'])
         query = line.strip("$ ").split(" ")
@@ -47,7 +45,7 @@ for line in lines:
 
     # if not new query then must be response
     response.append(line.split(" "))
-commands.append({'query': query, 'response':deepcopy(response)})
+commands.append({'query': query, 'response':response})
 
 
 
