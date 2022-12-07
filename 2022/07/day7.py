@@ -94,27 +94,8 @@ for command in commands[1:]:
 # run get_size() on root folder to initialise self.size for all folder
 root.get_size()
 
-# ------
-# PART 1
-# ------
-part1 = 0
-for f in list_of_folders:
-    size = f.size
-    if size <= 100000:
-        part1 += size
-
-print(part1)
-
-# ------
-# PART 2
-# ------
-total_space = 70000000
-needed_space = 30000000
-occupied_space = root.size
-
-list_of_possible_delete_sizes = []
-for f in list_of_folders:
-    if total_space - occupied_space + f.size >= needed_space:
-        list_of_possible_delete_sizes.append(f.get_size())
-
-print(sorted(list_of_possible_delete_sizes)[0])
+# ---------------
+# PART 1 & PART 2
+# ---------------
+print(sum([f.size if f.size <= 100000 else 0 for f in list_of_folders]))
+print(min([f.size if 70000000 - root.size + f.size >= 30000000 else root.size for f in list_of_folders ]))
