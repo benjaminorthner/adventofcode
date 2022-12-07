@@ -57,7 +57,7 @@ for command in commands[1:]:
                 sub_folders.append(Node(nodeName=response[1], parentNode=current_folder))
                 continue
 
-            # else just files. Save in dict with name and size (technically we dont need the name)
+            # else just files. Save in dict with name and size
             files.append({'filename':response[1], 'size':response[0]})
 
         # save subfolders and files into node
