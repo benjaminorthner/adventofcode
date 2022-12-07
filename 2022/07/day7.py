@@ -19,7 +19,6 @@ class Node(object):
         
         return self.size
 
-
 # ------------------------------------------------------------
 # import input and put queries and responses into nicer format
 # ------------------------------------------------------------
