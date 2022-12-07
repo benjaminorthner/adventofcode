@@ -91,12 +91,15 @@ for command in commands[1:]:
         if sub_folder.nodeName == command['query'][1]:
             current_folder = sub_folder
 
+# run get_size() on root folder to initialise self.size for all folder
+root.get_size()
+
 # ------
 # PART 1
 # ------
 part1 = 0
 for f in list_of_folders:
-    size = f.get_size()
+    size = f.size
     if size <= 100000:
         part1 += size
 
@@ -107,11 +110,11 @@ print(part1)
 # ------
 total_space = 70000000
 needed_space = 30000000
-occupied_space = root.get_size()
+occupied_space = root.size
 
 list_of_possible_delete_sizes = []
 for f in list_of_folders:
-    if total_space - occupied_space + f.get_size() >= needed_space:
+    if total_space - occupied_space + f.size >= needed_space:
         list_of_possible_delete_sizes.append(f.get_size())
 
 print(sorted(list_of_possible_delete_sizes)[0])
