@@ -90,11 +90,11 @@ for command in commands[1:]:
         if sub_folder.nodeName == command['query'][1]:
             current_folder = sub_folder
 
-# run get_size() on root folder to initialise self.size for all folder
+# run get_size() on root folder to initialise self.size for all folders
 root.get_size()
 
 # ---------------
 # PART 1 & PART 2
 # ---------------
 print(sum([f.size if f.size <= 100000 else 0 for f in list_of_folders]))
-print(min([f.size if 70000000 - root.size + f.size >= 30000000 else root.size for f in list_of_folders ]))
+print(min([f.size if 70000000 - root.size + f.size >= 30000000 else root.size for f in list_of_folders]))
