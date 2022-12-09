@@ -19,7 +19,6 @@ def blitSprite(image, x):
     return image
     
 
-
 # initialise image for part2
 image = ""
 
@@ -31,20 +30,22 @@ for line in lines:
     # split line into instruction and value
     instruction, *val = line.split(" ")
     
+    image = blitSprite(image, x)
+
     # noop
     if instruction == "noop":
-        image = blitSprite(image, x)
         cycle += 1
         part1 += calcSignalStrength(cycle, x)
         continue
 
     # addx
     val = int(val[0])
-    
-    image = blitSprite(image, x)
+
+   # first cycle of addx
     cycle += 1
     part1 += calcSignalStrength(cycle, x)
 
+    # second cycle of addx
     image = blitSprite(image, x)
     x += val
     cycle += 1
