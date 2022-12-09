@@ -16,7 +16,7 @@ def moveHead(H, dir):
         H[1] -= 1
 
 def moveKnot(T, H):
-    # move tailed based on head
+    # move tail based on head distance
     dist = np.linalg.norm(H - T)
 
     # vertical or horizontal moves
