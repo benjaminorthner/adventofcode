@@ -64,42 +64,29 @@ def LoadMonkeys():
                 monkeylist[-1].ifFalse = int(values.split(" ")[-1])
     return monkeylist
 
-monkeylist = LoadMonkeys()
 
 
-# -----------
-# PART 2
-# -----------
 
+for rounds, function in zip([20, 10000], [lambda x, _: x // 3, lambda x, mod: x % mod]):
 
-# PERFORM THE ROUNDS
-for _ in range(20):
-    for monkey in monkeylist:
-        for item in monkey.items:
-            monkey.inspectionCount += 1
-            new = monkey.operation(item) // 3
-            monkeylist[monkey.test(new)].items.append(new)
-            
-        monkey.items = []
+    # Load fresh set of monkey
+    monkeylist = LoadMonkeys()
 
-print(prod(sorted([monkey.inspectionCount for monkey in monkeylist])[-2:]))
+    # needed for part 2. After calculating the "new" value we take its modulo
+    # with respect to a number that is divisible by all monkeys modulo number
+    # this does not affect which monkey receives the item, but keeps the actual 
+    # numbers low and thus prevents the code from slowing down over time.s
+    mod = prod([m.modulo for m in monkeylist])
 
+    # Perform the rounds
+    for _ in range(rounds):
+        for monkey in monkeylist:
+            for item in monkey.items:
+                monkey.inspectionCount += 1
+                new = function(monkey.operation(item), mod)
+                monkeylist[monkey.test(new)].items.append(new)
+                
+            monkey.items = []
 
-# -----------
-# PART 2
-# -----------
-
-monkeylist = LoadMonkeys()
-
-# PERFORM THE ROUNDS
-mod = prod([m.modulo for m in monkeylist])
-for i in range(10000):
-    for monkey in monkeylist:
-        for item in monkey.items:
-            monkey.inspectionCount += 1
-            new = monkey.operation(item) % mod # does not affect which monkey receives item, but keeps numbers low 
-            monkeylist[monkey.test(new)].items.append(new)
-            
-        monkey.items = []
-
-print(prod(sorted([monkey.inspectionCount for monkey in monkeylist])[-2:]))
+    # print product of two highest inspection counts
+    print(prod(sorted([monkey.inspectionCount for monkey in monkeylist])[-2:]))
