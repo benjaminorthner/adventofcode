@@ -10,25 +10,12 @@ class Monkey:
         self.items = []
         self.inspectionCount = 0
 
-        self.operand = None
-        self.operator = None
+        self.operation = None
 
         self.modulo = None
         self.ifTrue = None
         self.ifFalse = None
     	
-    def operation(self, old):
-        if self.operand == 'old':
-            if self.operator == "*":
-                return old ** 2 
-            else:
-                return 2 * old
-
-        elif self.operator == "*":
-            return old * int(self.operand)
-        else:
-            return old + int(self.operand)
-    
     def test(self, toBeTested):
         if toBeTested % self.modulo == 0:
             return self.ifTrue
@@ -51,8 +38,11 @@ def LoadMonkeys():
                 monkeylist[-1].items = [int(i.strip()) for i in values.split(",")]
 
             elif "Operation" in label:
-                monkeylist[-1].operator = values.split(" ")[-2]
-                monkeylist[-1].operand = values.split(" ")[-1]
+                # interpret string as python function with eval
+                # need to put opstring inside of function as default value parameter
+                # otherwise I think we get issues with referencing (not sure but it fails otherwise)
+                opstring = values.split("= ")[1]
+                monkeylist[-1].operation = lambda old, opstring=opstring: eval(opstring)
     
             elif "Test" in label:
                 monkeylist[-1].modulo = int(values.split(" ")[-1])
