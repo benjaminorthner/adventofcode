@@ -65,8 +65,6 @@ def LoadMonkeys():
     return monkeylist
 
 
-
-
 for rounds, function in zip([20, 10000], [lambda x, _: x // 3, lambda x, mod: x % mod]):
 
     # Load fresh set of monkey
