@@ -1,5 +1,4 @@
 import numpy as np
-from copy import deepcopy
 
 with open("input.dat", 'r') as file:
     lines = [line.strip() for line in file.readlines()]
