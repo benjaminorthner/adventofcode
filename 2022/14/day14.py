@@ -94,27 +94,27 @@ printPicture()
 part1 = len(sand)
 print(part1)
 
-def simulateParticle2(particle):
-    
+def simulateParticle2(p):
+
+    checkSet = rocks.union(sand)
     while True:
-        if tuple(particle) in sand:
-            return False
+        if p in sand:
+            return False, p
 
-        if particle[1] > yrange[1]:
-            return True
+        if p[1] > yrange[1]:
+            return True, p
 
-        if tuple(particle + down) not in rocks.union(sand):
-            particle += down
+        if (p[0], p[1] + 1) not in checkSet:
+            p = (p[0], p[1] + 1)
             continue
-        elif tuple(particle + downLeft) not in rocks.union(sand):
-            particle += downLeft
+        elif (p[0]-1, p[1] + 1) not in checkSet:
+            p = (p[0]-1, p[1] + 1)
             continue
-        elif tuple(particle + downRight) not in rocks.union(sand):
-            particle += downRight
+        elif (p[0]+1, p[1] + 1) not in checkSet:
+            p = (p[0]+1, p[1] + 1)
             continue
         
-        
-        return True
+        return True, p
 
 def reduceSand():
     removelist = []
@@ -129,18 +129,16 @@ def reduceSand():
 
 count = 0
 while True:
-    newparticle = np.array([500, 0])
+    newparticle = (500, 0)
      
-    simCompleted = simulateParticle2(newparticle)
+    simCompleted, newparticle = simulateParticle2(newparticle)
 
     if simCompleted == True:
-        reduceSand() # improves speed dramatically, but still slow af
-        sand.add(tuple(newparticle))
+        reduceSand() # improves speed but still slow (kinda unnecessary)
+        sand.add(newparticle)
         count += 1
-        print(part1 + count)
         continue
     else:
         break
 
-printPicture()
 print(part1 + count)
