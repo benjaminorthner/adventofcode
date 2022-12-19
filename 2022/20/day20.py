@@ -25,7 +25,7 @@ def mix(input, totalMixCount, decryptionKey = 1):
             # calc new index
             newIndex = (initialIndex + movedItem[0]) % len(sequence)
 
-            # when items move backwards and end at the start, they should wrap to the back
+            # when items end at the start, they should wrap to the back
             if movedItem[0] != 0 and newIndex == 0:
                 newIndex = len(sequence)
             
