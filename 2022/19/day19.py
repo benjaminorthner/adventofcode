@@ -1,6 +1,6 @@
 from collections import deque
 
-with open('2022/19/input.dat', 'r') as file:
+with open('input.dat', 'r') as file:
     lines = [line.strip() for line in file.readlines()]
 
 # extract Blueprints
