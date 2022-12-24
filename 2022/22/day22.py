@@ -4,6 +4,7 @@ from time import sleep
 with open('input.dat', 'r') as file:
     gMap, movementString = file.read().split("\n\n")
     gMap = gMap.split("\n")
+    mapWidth = len(gMap[0])
 
 # make all lines in map equal length by padding the ends with spaces
 def initMap():
@@ -81,6 +82,16 @@ def rotate(move, d):
 
     return newD
 
+def getFaceId(r, c):
+    tileWidth = mapWidth // 3
+
+    rIndex = r // tileWidth
+    cIndex = c // tileWidth
+
+    idList = [[None, 1, 2], [None, 3, None], [4, 5, None], [6, None, None]]
+    return idList[rIndex][cIndex]
+
+
 # find starting position on map & define directions
 D = [(0, 1), (1, 0), (0, -1), (-1, 0)] # possible directions
 r = 0
@@ -123,10 +134,17 @@ printMap()
 # PART2
 #------
 
+# I will index the faces of the cube as follows
+# - 1 2
+# - 3 -
+# 4 5 -
+# 6
+
 D = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 r = 0
 c = findStart()
 d = 0
+
 
 # initialise maps and parse movements
 initMap()
@@ -141,7 +159,8 @@ for i, move in enumerate(movements):
 
     else:
         rStart, rWidth, cStart, cWidth = getStartAndWidth(r, c)
-
+        faceId = getFaceId(r, c)
+        # TODO keep working on code here
         for _ in range(move):
             # new r and c after move
             rr = ((r - rStart) + D[d][0]) % rWidth + rStart
